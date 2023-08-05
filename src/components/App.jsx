@@ -14,27 +14,16 @@ export default function App() {
   const updateContact = e => {
     const {name, value} = e.target;
 
+    //* Not too short, not too long but readable
     setContact(prevVal => {
-      if (name === 'fName') {
-        return {
-          fName: value,
-          lName: prevVal.lName,
-          email: prevVal.email,
-        }
-      } else if (name === 'lName') {
-        return {
-          fName: prevVal.fName,
-          lName: value,
-          email: prevVal.email,
-        }
-      } else {
-        return {
-          fName: prevVal.fName,
-          lName: prevVal.lName,
-          email: value,
-        }
+      return {
+        ...prevVal,
+        [name]: value
       }
     });
+
+    //* Shorter but not so readable
+    // setContact(prevVal => ({ ...prevVal, [name]: value }));
   }
 
   return (
